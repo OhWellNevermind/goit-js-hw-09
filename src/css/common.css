@@ -16,3 +16,21 @@ img {
   display: block;
   max-width: 100%;
 }
+
+/* task-1 */
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.start-btn {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.stop-btn {
+  padding: 10px;
+  border-radius: 10px;
+}
