@@ -34,3 +34,24 @@ img {
   padding: 10px;
   border-radius: 10px;
 }
+
+/* task-2 */
+.timer {
+  display: flex;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.value {
+  font-size: 30px;
+}
+
+.label {
+  text-transform: uppercase;
+}
