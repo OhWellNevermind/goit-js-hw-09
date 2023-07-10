@@ -14,6 +14,10 @@ function handleSubmit(event) {
   let delayValue = +delay.value;
   let stepValue = +step.value;
   let amountValue = +amount.value;
+  if (delayValue < 0 || stepValue < 0 || amountValue <= 0) {
+    Notiflix.Notify.failure('Please enter value bigger than 0');
+    return;
+  }
   for (let i = 1; i <= amountValue; i++) {
     createPromise(i, delayValue)
       .then(({ position, delay }) => {
