@@ -33,8 +33,12 @@ let timerId;
 
 refs.startBtn.addEventListener('click', () => {
   timerId = setInterval(countDown, 1000);
+  refs.startBtn.disabled = true;
+  refs.timePicker.disabled = true;
   setTimeout(() => {
     clearInterval(timerId);
+    refs.startBtn.disabled = false;
+    refs.timePicker.disabled = false;
   }, Date.parse(refs.timePicker.value) - Date.now());
 });
 
