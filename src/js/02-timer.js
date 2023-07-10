@@ -66,9 +66,5 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-  if (value === '0' || value.length < 2) {
-    return value.padStart(2, '0');
-  }
-
-  return value;
+  return value.padStart(2, '0');
 }

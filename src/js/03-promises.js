@@ -15,7 +15,23 @@ function handleSubmit(event) {
   let stepValue = +step.value;
   let amountValue = +amount.value;
   for (let i = 1; i <= amountValue; i++) {
-    createPromise(i, delayValue);
+    createPromise(i, delayValue)
+      .then(({ position, delay }) => {
+        setTimeout(() => {
+          Notiflix.Notify.success(
+            `✅ Fulfilled promise ${position} in ${delay}ms`,
+            { useIcon: false }
+          );
+        }, delay);
+      })
+      .catch(({ position, delay }) => {
+        setTimeout(() => {
+          Notiflix.Notify.failure(
+            `❌ Rejected promise ${position} in ${delay}ms`,
+            { useIcon: false }
+          );
+        }, delay);
+      });
     delayValue += stepValue;
   }
 }
@@ -23,30 +39,8 @@ function handleSubmit(event) {
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
   if (shouldResolve) {
-    return new Promise(resolve => {
-      setTimeout(
-        () =>
-          resolve(
-            Notiflix.Notify.success(
-              `✅ Fulfilled promise ${position} in ${delay}ms`,
-              { useIcon: false }
-            )
-          ),
-        delay
-      );
-    });
+    return Promise.resolve({ position: position, delay: delay });
   } else {
-    return new Promise(reject => {
-      setTimeout(
-        () =>
-          reject(
-            Notiflix.Notify.failure(
-              `❌ Rejected promise ${position} in ${delay}ms`,
-              { useIcon: false }
-            )
-          ),
-        delay
-      );
-    });
+    return Promise.reject({ position: position, delay: delay });
   }
 }
